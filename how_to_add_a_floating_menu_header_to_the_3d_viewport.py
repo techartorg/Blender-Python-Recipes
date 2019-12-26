@@ -88,4 +88,4 @@ bpy.types.VIEW3D_MT_editor_menus.append(draw_menu)
 
 
 if __name__ == '__main__':
-    register( )
+    register()

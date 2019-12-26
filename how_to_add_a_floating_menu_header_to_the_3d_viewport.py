@@ -12,7 +12,7 @@ bl_info = {
     "blender": (2, 80, 0),
     "location": "3D Viewport Header Interface Menu",
     "description": "Adds a new drop down menu to the 3D Viewport",
-    "category": "3D View",
+    "category": "Tech Artists",
 }
 
 class TestMenu(Menu):

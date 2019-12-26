@@ -16,8 +16,8 @@ bl_info = {
 }
 
 class TestMenu(Menu):
-    bl_label = 'Test'
-    bl_idname = 'VIEW_MT_test_menu' # This should start with VIEW_MT_ and then be unique
+    bl_label = "Test"
+    bl_idname = "VIEW_MT_test_menu" # This should start with VIEW_MT_ and then be unique
 
     """
     A test menu showing how to add operators and separators.
@@ -55,6 +55,7 @@ def draw_menu(self, context):
     Arguments:
        context
     """
+    
     layout = self.layout
     layout.menu(TestMenu.bl_idname)
 
@@ -63,5 +64,5 @@ register, unregister = bpy.utils.register_classes_factory((TestMenu,))
 bpy.types.VIEW3D_MT_editor_menus.append(draw_menu)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     register( )

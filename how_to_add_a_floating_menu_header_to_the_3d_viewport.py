@@ -82,7 +82,7 @@ def draw_menu(self, context):
     layout.menu(TestMenu.bl_idname)
 
 
-classes = ( TestMenu, TestSubmenu, )
+classes = (TestMenu, TestSubmenu,)
 register, unregister = bpy.utils.register_classes_factory(classes)
 bpy.types.VIEW3D_MT_editor_menus.append(draw_menu)
 

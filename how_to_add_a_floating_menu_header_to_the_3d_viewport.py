@@ -21,29 +21,52 @@ class TestMenu(Menu):
 
     """
     A test menu showing how to add operators and separators.
-   
-    Arguments:
-       None
-   """
+    """
 
     def draw(self, layout):
-       """
-       Draws the menu.
-       The first argument to the layout.operator() method is a string pointing to
-       an operator's bl_idname. The operator does not to be instantiated before the 
-       menu is drawn. If no matching operator is found the menu item will not be drawn.
-       For this example I've used standard Blender operators to ensure the menu 
-       draws correctly.
-       
-       Arguments:
-           layout
-       """
+        """
+        Draws the menu.
+        The first argument to the layout.operator() method is a string pointing to
+        an operator's bl_idname. The operator does not to be instantiated before the 
+        menu is drawn. If no matching operator is found the menu item will not be drawn.
+        For this example I've used standard Blender operators to ensure the menu 
+        draws correctly.
 
-       layout = self.layout
-       layout.operator("transform.transform", text="Test 00")
-       layout.operator("object.randomize_transform", text="Test 01")
-       layout.separator()
-       layout.operator("object.align", text="Test 02")
+        Arguments:
+            layout
+        """
+
+        layout = self.layout
+        layout.operator("transform.transform", text="Test 00")
+        layout.operator("object.randomize_transform", text="Test 01")
+        layout.separator()
+        layout.operator("object.align", text="Test 02")
+        layout.menu("VIEW_MT_test_submenu")
+
+
+class TestSubmenu(Menu):
+    bl_label = "Test Submenu"
+    bl_idname = "VIEW_MT_test_submenu"
+
+    """
+    A test submenu showing how it is added to the main menu.
+    """
+
+    def draw(self, layout):
+        """
+        Draws the menu.
+        The first argument to the layout.operator() method is a string pointing to
+        an operator's bl_idname. The operator does not to be instantiated before the 
+        menu is drawn. If no matching operator is found the menu item will not be drawn.
+        For this example I've used standard Blender operators to ensure the menu 
+        draws correctly.
+        
+        Arguments:
+            layout
+        """
+ 
+        layout = self.layout
+        layout.operator("object.align", text = "Submenu Test 00")
 
 
 
@@ -53,16 +76,16 @@ def draw_menu(self, context):
     calls this referenced function it draws the test menu header in the viewport.
    
     Arguments:
-       context
+        context
     """
-    
     layout = self.layout
     layout.menu(TestMenu.bl_idname)
 
 
-register, unregister = bpy.utils.register_classes_factory((TestMenu,))
+classes = ( TestMenu, TestSubmenu, )
+register, unregister = bpy.utils.register_classes_factory(classes)
 bpy.types.VIEW3D_MT_editor_menus.append(draw_menu)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     register( )
